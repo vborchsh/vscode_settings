@@ -1,0 +1,120 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "QuestaSim: build file",
+      "type": "shell",
+      "command": "vlog -sv ${file}",
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+      },
+    },
+
+    {
+      "label": "QuestaSim: noGUI",
+      "type": "shell",
+      "command": "vsim -batch -do \"do sim.do sim; run -all\"",
+      "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+          "MTI_VCO_MODE": "64",
+        },
+      },
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false,
+      }
+    },
+
+    {
+      "label": "QuestaSim: GUI",
+      "type": "shell",
+      "command": "vsim -do \"do sim.do sim; do wave.do\"",
+      "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+          "MTI_VCO_MODE": "64",
+        },
+      },
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "focus": true,
+      }
+    },
+
+    {
+      "label": "RTL pytest: GUI",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pytest", "-n0", "-s", "${file}"],
+      "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+          "GUI": "1",
+          "WAVES": "1",
+          "MTI_VCO_MODE": "64",
+        },
+      },
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared",
+        "focus": true,
+      }
+    },
+
+    {
+      "label": "RTL pytest: noGUI",
+      "type": "shell",
+      "command": "python",
+      "args": ["-m", "pytest", "-n0", "-s", "${file}"],
+      "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+          "GUI": "0",
+          "WAVES": "0",
+          "MTI_VCO_MODE": "64",
+        },
+      },
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "new",
+        "focus": true,
+      }
+    },
+
+    {
+      "label": "RTL format: verible",
+      "type": "shell",
+      "command": "verible-verilog-format --inplace --flagfile=${workspaceFolder}/.vscode/verilog_format ${file}",
+      "options": {
+        "cwd": "${fileDirname}",
+      },
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "never",
+      }
+    },
+
+  ]
+}

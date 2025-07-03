@@ -1,0 +1,163 @@
+{
+    "module with parameters": {
+        "prefix": ["paramod", "module #"],
+        "body": [
+            "module ${1:moduleName} #(",
+            "\t${2:parameters}",
+            ") (",
+            "\t${3:ports}",
+            ");",
+            "\t$0",
+            "endmodule"
+        ],
+        "description": "module with parameters"
+    },
+
+    "module without parameters": {
+        "prefix": "module",
+        "body": [
+            "module ${1:moduleName} (",
+            "\t${2:ports}",
+            ");",
+            "\r$0",
+            "endmodule"
+        ],
+        "description": "module without parameters"
+    },
+
+    "instantiate module": {
+        "prefix": ["set module", "instantiate module"],
+        "body": [
+            "${1:mod_name}",
+            "${1:mod_name}_inst",
+            "(",
+            "\t.${2:port_name}\t(${3:connection_name})",
+            ");$0"
+        ],
+        "description": "Instantiate module: mod u_mod (port_list);"
+    },
+
+    "always_ff block": {
+        "prefix": ["aff", "always_ff"],
+        "body": [
+            "always_ff @(posedge ${1:i_clk}) begin",
+            "\t$0",
+            "end"
+        ],
+        "description": "Insert an always_ff block"
+    },
+
+    "always_comb block": {
+        "prefix": ["acc", "always_comb"],
+        "body": [
+            "always_comb begin",
+            "\t$0",
+            "end"
+        ],
+        "description": "Insert an always_comb block"
+    },
+
+    "typedef struct packed": {
+        "prefix": ["tsp", "typedef struct packed"],
+        "body": [
+            "typedef struct packed {",
+            "\t$0",
+            "} ${1:struct_name};"
+        ],
+        "description": "typedef struct packed { ... } name"
+    },
+
+    "class": {
+        "prefix": "class",
+        "body": [
+            "class ${1:className};",
+            "\tfunction new();",
+            "\t\t$0",
+            "\tendfunction",
+            "endclass : $1"
+        ],
+        "description": "class name; ... endclass"
+    },
+
+    "class extends": {
+        "prefix": "class extends",
+        "body": [
+            "class ${1:className} extends ${2:superClass};",
+            "\tfunction new();",
+            "\t\t$0",
+            "\tendfunction",
+            "endclass : $1"
+        ],
+        "description": "class name extends super; ... endclass"
+    },
+
+    "task": {
+        "prefix": "task",
+        "body": [
+            "task ${1:automatic} ${2:taskName}(${3:arguments});",
+            "\t$0",
+            "endtask : $2"
+        ],
+        "description": "task name; ... endtask"
+    },
+
+    "package": {
+        "prefix": "package",
+        "body": [
+            "package ${1:package_name}",
+            "\t$2",
+            "endpackage : $1"
+        ],
+        "description": "package name; ... endpackage"
+    },
+
+    "interface": {
+        "prefix": "interface",
+        "body": [
+            "interface ${1:interfacename};",
+            "\t$0",
+            "endinterface : $1"
+        ],
+        "description": "interface name; ... endinterface"
+    },
+
+    "typedef enum": {
+        "prefix": "typedef enum",
+        "body": [
+            "typedef enum ${1:data_type} {",
+            "\t$0",
+            "} ${2:name};"
+        ],
+        "description": "typedef enum (data_type) { ... } name"
+    },
+
+    "assert": {
+        "prefix": "assert",
+        "body": [
+            "assert (${1:condition}) $2",
+            "else   ${3:error_process}"
+        ],
+        "description": "insert assert() ... else ..."
+    },
+
+    "initial block": {
+        "prefix": "initial",
+        "body": [
+            "initial begin",
+            "\t$0",
+            "end"
+        ],
+        "description": "initial begin ... end"
+    },
+    
+    "case": {
+        "prefix": "case",
+        "body": [
+            "case (${1:param})",
+            "\t$2: $3",
+            "\tdefault: $4",
+            "endcase"
+        ],
+        "description": "case () ... endcase"
+    },
+}
