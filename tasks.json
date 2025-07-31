@@ -1,8 +1,29 @@
 {
   "version": "2.0.0",
+
+  "inputs" : [
+    {
+      "id" : "gui-selection-string",
+      "type" : "pickString",
+      "description" : "Should this run with GUI?: ",
+      "options": ["0", "1"],
+      "default": ""
+    },
+    {
+      "id": "questa-selection-string",
+      "type": "pickString",
+      "description": "Choose QuestaSim arguments for run: ",
+      "options": [
+        "-batch -do \"do sim.do sim; run -all\" # noGUI",
+        "-do \"do sim.do sim; do wave.do\" # GUI",
+      ],
+      "default": ""
+    },
+  ],
+
   "tasks": [
     {
-      "label": "QuestaSim: build file",
+      "label": "QuestaSim: build SV file",
       "type": "shell",
       "command": "vlog -sv ${file}",
       "group": {
@@ -13,12 +34,25 @@
         "panel": "shared",
         "focus": false,
       },
+      "problemMatcher": {
+        "owner": "Verilog",
+        "fileLocation": ["autoDetect", "${workspaceFolder}"],
+        "pattern": [
+            {
+              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+              "file": 2,
+              "line": 3,
+              "severity": 1,
+              "message": 4,
+            },
+        ]
+      },
     },
 
     {
-      "label": "QuestaSim: noGUI",
+      "label": "QuestaSim: sim.do in current folder",
       "type": "shell",
-      "command": "vsim -batch -do \"do sim.do sim; run -all\"",
+      "command": "vsim ${input:questa-selection-string}",
       "options": {
         "cwd": "${fileDirname}",
         "env": {
@@ -32,62 +66,32 @@
         "reveal": "always",
         "panel": "new",
         "focus": false,
-      }
+      },
+      "problemMatcher": {
+        "owner": "Verilog",
+        "fileLocation": ["autoDetect", "${workspaceFolder}"],
+        "pattern": [
+            {
+              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+              "file": 2,
+              "line": 3,
+              "severity": 1,
+              "message": 4,
+            },
+        ]
+      },
     },
 
     {
-      "label": "QuestaSim: GUI",
-      "type": "shell",
-      "command": "vsim -do \"do sim.do sim; do wave.do\"",
-      "options": {
-        "cwd": "${fileDirname}",
-        "env": {
-          "MTI_VCO_MODE": "64",
-        },
-      },
-      "group": {
-        "kind": "build",
-      },
-      "presentation": {
-        "reveal": "silent",
-        "panel": "shared",
-        "focus": true,
-      }
-    },
-
-    {
-      "label": "RTL pytest: GUI",
+      "label": "RTL pytest: this file",
       "type": "shell",
       "command": "python",
       "args": ["-m", "pytest", "-n0", "-s", "${file}"],
       "options": {
         "cwd": "${fileDirname}",
         "env": {
-          "GUI": "1",
-          "WAVES": "1",
-          "MTI_VCO_MODE": "64",
-        },
-      },
-      "group": {
-        "kind": "build",
-      },
-      "presentation": {
-        "reveal": "silent",
-        "panel": "shared",
-        "focus": true,
-      }
-    },
-
-    {
-      "label": "RTL pytest: noGUI",
-      "type": "shell",
-      "command": "python",
-      "args": ["-m", "pytest", "-n0", "-s", "${file}"],
-      "options": {
-        "cwd": "${fileDirname}",
-        "env": {
-          "GUI": "0",
-          "WAVES": "0",
+          "GUI": "${input:gui-selection-string}",
+          "WAVES": "${input:gui-selection-string}",
           "MTI_VCO_MODE": "64",
         },
       },
@@ -98,23 +102,20 @@
         "reveal": "silent",
         "panel": "new",
         "focus": true,
-      }
-    },
-
-    {
-      "label": "RTL format: verible",
-      "type": "shell",
-      "command": "verible-verilog-format --inplace --flagfile=${workspaceFolder}/.vscode/verilog_format ${file}",
-      "options": {
-        "cwd": "${fileDirname}",
       },
-      "group": {
-        "kind": "build",
+      "problemMatcher": {
+        "owner": "Verilog",
+        "fileLocation": ["autoDetect", "${workspaceFolder}"],
+        "pattern": [
+            {
+              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+              "file": 2,
+              "line": 3,
+              "severity": 1,
+              "message": 4,
+            },
+        ]
       },
-      "presentation": {
-        "reveal": "never",
-      }
     },
-
-  ]
+  ],
 }
