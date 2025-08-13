@@ -38,13 +38,13 @@
         "owner": "Verilog",
         "fileLocation": ["autoDetect", "${workspaceFolder}"],
         "pattern": [
-            {
-              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
-              "file": 2,
-              "line": 3,
-              "severity": 1,
-              "message": 4,
-            },
+          {
+            "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+            "file": 2,
+            "line": 3,
+            "severity": 1,
+            "message": 4,
+          },
         ]
       },
     },
@@ -71,13 +71,13 @@
         "owner": "Verilog",
         "fileLocation": ["autoDetect", "${workspaceFolder}"],
         "pattern": [
-            {
-              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
-              "file": 2,
-              "line": 3,
-              "severity": 1,
-              "message": 4,
-            },
+          {
+            "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+            "file": 2,
+            "line": 3,
+            "severity": 1,
+            "message": 4,
+          },
         ]
       },
     },
@@ -107,13 +107,13 @@
         "owner": "Verilog",
         "fileLocation": ["autoDetect", "${workspaceFolder}"],
         "pattern": [
-            {
-              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
-              "file": 2,
-              "line": 3,
-              "severity": 1,
-              "message": 4,
-            },
+          {
+            "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+            "file": 2,
+            "line": 3,
+            "severity": 1,
+            "message": 4,
+          },
         ]
       },
     },
