@@ -19,6 +19,17 @@
       ],
       "default": ""
     },
+    {
+      "id": "pytest-sel-test",
+      "type": "command",
+      "command": "shellCommand.execute",
+      "args": {
+          // Collect list of tests | cut last line with `Result (X sec)` | keep file and test name only with no path
+          "command": "pytest --collect-only --disable-warnings --quiet ${file} | head -n -1 | xargs -I {} basename {}",
+          "fieldSeparator": "\n",
+          "description": "Select available pytest test in the open file"
+      }
+    },
   ],
 
   "tasks": [
@@ -83,10 +94,10 @@
     },
 
     {
-      "label": "RTL pytest: this file",
+      "label": "Pytest: select test from file",
       "type": "shell",
       "command": "python",
-      "args": ["-m", "pytest", "-n0", "-s", "${file}"],
+      "args": ["-m", "pytest", "-n0", "-s", "${input:pytest-sel-test}"],
       "options": {
         "cwd": "${fileDirname}",
         "env": {
