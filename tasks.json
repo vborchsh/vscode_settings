@@ -94,7 +94,7 @@
     },
 
     {
-      "label": "Pytest: select test from file",
+      "label": "Pytest: run test from file",
       "type": "shell",
       "command": "python",
       "args": ["-m", "pytest", "-n0", "-s", "${input:pytest-sel-test}"],
@@ -102,7 +102,6 @@
         "cwd": "${fileDirname}",
         "env": {
           "GUI": "${input:gui-selection-string}",
-          "WAVES": "${input:gui-selection-string}",
           "MTI_VCO_MODE": "64",
         },
       },
