@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "gerane.theme-afterglow",
+        "ms-vscode-remote.remote-ssh",
+        "ms-vscode-remote.remote-ssh-edit",
+        "ms-vscode.remote-explorer",
+        "ms-vscode-remote.remote-wsl",
+        "gxl.git-graph-3",
+        "mathworks.language-matlab",
+        "streetsidesoftware.code-spell-checker-russian",
+        "augustocdias.tasks-shell-input",
+        "mshr-h.veriloghdl",
+        "streetsidesoftware.code-spell-checker",
+        "ms-azuretools.vscode-containers",
+        "gediminaszlatkus.ctags-companion",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "ms-python.vscode-python-envs",
+        "ms-vscode.makefile-tools",
+    ]
+}
