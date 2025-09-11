@@ -127,5 +127,20 @@
         ]
       },
     },
+
+    {
+      "label": "RTL format: verible",
+      "type": "shell",
+      "command": "verible-verilog-format --inplace --flagfile=${workspaceFolder}/.vscode/verilog_format ${file}",
+      "options": {
+        "cwd": "${fileDirname}",
+      },
+      "group": {
+        "kind": "build",
+      },
+      "presentation": {
+        "reveal": "never",
+      }
+    },
   ],
 }
