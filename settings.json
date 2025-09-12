@@ -5,6 +5,9 @@
     "-s",
     "sim",
   ],
+  "files.associations": {
+    "*.do": "tcl"
+  },
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "ctags-companion.command": "ctags -R --fields=+nKz --langmap=SystemVerilog:+.v -R rtl core sim",
