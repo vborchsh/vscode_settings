@@ -41,8 +41,10 @@
         "kind": "build",
       },
       "presentation": {
-        "reveal": "always",
-        "panel": "shared",
+        "reveal": "silent",
+        "clear": true,
+        "revealProblems": "onProblem",
+        "showReuseMessage": false,
         "focus": false,
       },
       "problemMatcher": {
@@ -74,8 +76,10 @@
         "kind": "build",
       },
       "presentation": {
-        "reveal": "always",
-        "panel": "new",
+        "reveal": "silent",
+        "clear": true,
+        "revealProblems": "onProblem",
+        "showReuseMessage": false,
         "focus": false,
       },
       "problemMatcher": {
@@ -110,28 +114,34 @@
       },
       "presentation": {
         "reveal": "silent",
-        "panel": "new",
-        "focus": true,
+        "clear": true,
+        "revealProblems": "onProblem",
+        "showReuseMessage": false,
+        "focus": false,
       },
-      "problemMatcher": {
-        "owner": "Verilog",
-        "fileLocation": ["autoDetect", "${workspaceFolder}"],
-        "pattern": [
-          {
-            "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
-            "file": 2,
-            "line": 3,
-            "severity": 1,
-            "message": 4,
-          },
-        ]
-      },
+      "problemMatcher": [
+        {
+          "owner": "Verilog",
+          "fileLocation": ["autoDetect", "${workspaceFolder}"],
+          "pattern": [
+            {
+              "regexp": "^\\*\\* (Warning|Warning \\(downgraded\\)|Error|Error \\(suppressible\\)): (.*)\\((\\d+)\\): (.*$)",
+              "file": 2,
+              "line": 3,
+              "severity": 1,
+              "message": 4,
+            },
+          ]
+        },
+        "$python",
+      ],
     },
 
     {
       "label": "RTL format: verible",
       "type": "shell",
-      "command": "verible-verilog-format --inplace --flagfile=${workspaceFolder}/.vscode/verilog_format ${file}",
+      "command": "verible-verilog-format",
+      "args": ["--flagfile", "${file}", "--inplace", "${workspaceFolder}/.vscode/verilog_format"],
       "options": {
         "cwd": "${fileDirname}",
       },
@@ -139,8 +149,11 @@
         "kind": "build",
       },
       "presentation": {
-        "reveal": "never",
-      }
+        "reveal": "silent",
+        "showReuseMessage": false,
+        "focus": false,
+      },
     },
+
   ],
 }
