@@ -12,10 +12,10 @@
     {
       "id": "questa-selection-string",
       "type": "pickString",
-      "description": "Choose QuestaSim arguments for run: ",
+      "description": "Choose QuestaSim command for run: ",
       "options": [
-        "-batch -do \"do sim.do sim; run -all\" # noGUI",
-        "-do \"do sim.do sim; do wave.do\" # GUI",
+        "-batch -do \"do ${file} sim; run -all;\" # noGUI",
+        "-do \"do ${file} sim;\" # GUI",
       ],
       "default": ""
     },
@@ -34,7 +34,7 @@
 
   "tasks": [
     {
-      "label": "QuestaSim: build SV file",
+      "label": "QuestaSim: build current file (SV)",
       "type": "shell",
       "command": "vlog -sv ${file}",
       "group": {
@@ -63,7 +63,7 @@
     },
 
     {
-      "label": "QuestaSim: sim.do in current folder",
+      "label": "QuestaSim: run current file (TCL/DO)",
       "type": "shell",
       "command": "vsim ${input:questa-selection-string}",
       "options": {
@@ -98,7 +98,7 @@
     },
 
     {
-      "label": "Pytest: run test from file",
+      "label": "Pytest: choose and run test from file",
       "type": "shell",
       "command": "python",
       "args": ["-m", "pytest", "-n0", "-s", "${input:pytest-sel-test}"],
@@ -135,24 +135,6 @@
         },
         "$python",
       ],
-    },
-
-    {
-      "label": "RTL format: verible",
-      "type": "shell",
-      "command": "verible-verilog-format",
-      "args": ["--flagfile", "${file}", "--inplace", "${workspaceFolder}/.vscode/verilog_format"],
-      "options": {
-        "cwd": "${fileDirname}",
-      },
-      "group": {
-        "kind": "build",
-      },
-      "presentation": {
-        "reveal": "silent",
-        "showReuseMessage": false,
-        "focus": false,
-      },
     },
 
   ],

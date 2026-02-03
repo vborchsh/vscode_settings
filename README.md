@@ -1,10 +1,34 @@
 # Installation
 
+1. Install `sv-lang` and `slang-server`
+
+https://github.com/MikePopoloski/slang
+
+https://hudson-trading.github.io/slang-server/start/installing/#vscode
+
+2. Copy this settings to your project
+
 ```bash
 cd <your vscode project>
 git clone https://github.com/vborchsh/vscode_settings .vscode
 ```
 
-And, here we go, ctrl+shift+b should reveal tasks panel:
+! You need to remove your existing `.vscode` if it is.
 
-<img width="599" height="107" alt="image" src="https://github.com/user-attachments/assets/4ecc49c3-daf2-4567-9e0a-3e20a7610350" />
+3. Setup things for your project
+
+```bash
+cd <your vscode project>
+cp .vscode/.slang .slang
+nano .slang/server.json # setup folders and the other project stettings
+```
+
+4. Done
+
+Here we go, ctrl+shift+b should reveal tasks panel:
+
+<img width="599" height="107" alt="image" src="img/tasks.png" />
+
+`slang-server` lint the code:
+
+<img width="599" height="107" alt="image" src="img/lint.png" />
